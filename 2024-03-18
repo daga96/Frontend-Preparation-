@@ -1,0 +1,162 @@
+1. JavaScript const, let and var
+    1. const and let were added in ES6 → var was using lexical scope causing variable hoisting.
+        
+        **const** is used for constant/ unchanged values. const is also block-scoped like let.
+        Variables declared with const must be initialized at the time of declaration and cannot be reassigned. However, if the value is an object or array, the properties of the object or the elements of the array can be mutated. const variables are not hoisted.
+        
+        **`var`** is function-scoped. Variables declared with **`var`** are hoisted to the top of their scope during the compilation phase, which means you can access them before they are declared, but their value will be **`undefined`**.
+        
+        **let** is block-scoped. It means that variables declared with let are only accessible within the block in which they are defined (block is defined by {}). It's also scoped to loops, if statements, and other blocks.
+        Variables declared with let are not hoisted, which means you cannot access them before they are declared.
+        let does not allow redeclaration within the same block scope, but it allows reassignment.
+        
+        ```jsx
+        function example () {
+        if(false) {
+        	var ex = 6;
+        	}
+        	return ex;
+        	}
+        	
+        	console.log(example()); // undefined
+        	
+        	
+        ----
+        function example () {
+        if(false) {
+        	let ex = 6;
+        	}
+        	return ex;
+        	}
+        	
+        	console.log(example()); // error ex is not defined 
+        	
+        	
+        	
+        ```
+2. Pass by value and pass by reference
+        
+        In JavaScript, primitive types such as numbers are passed by value.  In JavaScript, objects (including arrays) are passed by reference. 
+        
+        ```jsx
+        //passing by value
+        let example1 = 1;
+        let example2 = example1;
+        
+        //passing by reference
+        const example3 = [];
+        const example4 = example3;
+        
+        ```
+3. map(), filter(), reduce() 
+
+higher-order functions
+
+map() → function applies a given function to each element of an array and returns a new array containing the results of applying the function to each element.
+
+filter() → function creates a new array with all elements that pass the test implemented by the provided callback function. 
+
+reduce() → function applies a function against an accumulator and each element in the array (from left to right) to reduce it to a single value. It iterates over each element in the array, applies the callback function, and accumulates a result, which can be of any type.
+
+const prices = [1, 2, 3, 10, 29];
+
+const mapEx = prices.map((value) => value + 1);
+mapEx; //[2,3,5,11,30]
+
+const filterEx = prices.filter((value) => value % 2 === 0);
+filterEx; //[2,10]
+
+const reduce = prices.reduce((total, value) => {
+  return total += value;
+}, 0);
+reduce; //45
+
+const reduceArr = prices.reduce((total, value) => {
+    const newVal = value + 1;
+    total.push(newVal);
+    return total;
+}, [])
+
+reduceArr [2,3,4,11,30]
+4. Falsey values 
+
+```jsx
+const ex1 = undefined;
+const ex2 = null;
+const ex3 = NaN;
+const ex4 = 0;
+const ex5 = '';
+const ex6 = false;
+
+console.log(!!ex1); //false
+console.log(!!ex2); //false
+console.log(!!ex3); //false
+console.log(!!ex4); //false
+console.log(!!ex5); //false
+console.log(!!ex6); //false
+
+```
+
+5. coercion 
+
+console.log(3+2+"7") // ‘57’
+
+1. delete keyword [ preferably not to use ]
+
+```jsx
+const user = {
+    first : 1,
+    second : 2,
+}
+
+delete user.first;
+console.log(user)
+```
+
+6. Object notations 
+
+dot and bracket notation
+
+user.firstName → dot notation
+
+user[’firstname’] → bracket notation
+
+7.callbacks 
+
+In coding, it means you're passing a function as an argument to another function, telling it to run that function when it's done with its task.
+
+```jsx
+const arr = [1,2,3,4,5]
+
+const arr2= arr.map((val)=> **val+5**);
+
+```
+
+8. closure
+
+function that returns a function for a purpose to hide private variable,
+
+```jsx
+const add1 = (function() {
+    let counter = 0;
+    return function() {
+        counter++; 
+        return counter;
+    };
+})();
+
+```
+
+9. naming and standards
+
+Naming Conventions: 
+
+variables - camelCase 
+
+is/has → for booleans
+
+functions that are returning → get or handle some kind of verb 
+
+as few selectors as possible
+
+css naming - dashing
